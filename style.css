@@ -18,6 +18,7 @@ html {
     --card-hover-bg: rgba(54, 25, 25, 0.8);
     --star-base: rgba(255, 255, 255, 0.15);
     --star-active: #F2A21F;                         /* Gold active stars */
+    --neon-green: #00E676;                          /* Vibrant active online accent */
 }
 
 [data-theme="light"] {
@@ -33,6 +34,7 @@ html {
     --card-hover-bg: rgba(255, 250, 240, 0.95);
     --star-base: rgba(38, 17, 17, 0.1);
     --star-active: #E08B00;                         /* Deep gold active stars */
+    --neon-green: #00C853;                          /* Sightly deeper clean green for white view text safety */
 }
 
 /* Universal Base Reset */
@@ -151,6 +153,62 @@ body {
     color: var(--accent);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* PREMIUM GREEN ONLINE STATUS INDICATOR MODULE */
+.status-online-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 230, 118, 0.06);
+    border: 1px solid rgba(0, 230, 118, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+}
+
+[data-theme="light"] .status-online-indicator {
+    background: rgba(0, 200, 83, 0.05);
+    border: 1px solid rgba(0, 200, 83, 0.12);
+}
+
+.online-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-green);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 8px var(--neon-green);
+}
+
+.online-pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--neon-green);
+    opacity: 0.8;
+    animation: broadcastPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes broadcastPulse {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.online-text-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--neon-green);
+    text-transform: uppercase;
+}
+
+/* Theme Switcher Button Adjustment */
 .theme-toggle-btn {
     background: var(--border-glass);
     border: 1px solid var(--border-glass);
@@ -170,6 +228,22 @@ body {
     background: var(--text-primary);
     color: var(--base-bg);
     transform: translateY(-2px);
+}
+
+/* Mobile Hamburger Menu Switch styles */
+.mobile-toggle-trigger {
+    display: none;
+    background: var(--border-glass);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
 }
 
 /* ==========================================================================
@@ -236,6 +310,14 @@ body {
    ========================================================================== */
 .layout-section {
     margin-bottom: 6rem;
+}
+
+.section-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
 }
 
 .section-badge {
@@ -563,7 +645,7 @@ body {
 }
 
 /* ==========================================================================
-   PICTURE MATRIX VAULT GALLERY (Fixed to avoid mouse hover motion)
+   PICTURE MATRIX VAULT GALLERY
    ========================================================================== */
 .gallery-responsive-matrix {
     display: grid;
@@ -578,7 +660,6 @@ body {
     position: relative;
     background: var(--interface-glass);
     border: 1px solid var(--border-glass);
-    /* No hover or cursor movement interactions allowed here */
 }
 
 .gallery-static-frame img {
@@ -685,8 +766,92 @@ body {
    MOBILE MATRIX INTERFACE RESPONSIVENESS OVERRIDES
    ========================================================================== */
 @media (max-width: 900px) {
-    .nav-menu { display: none; }
-    .about-dual-flex, .split-grid-1to1 { grid-template-columns: 1fr; }
-    .main-title { font-size: 2.8rem; }
-    .footer-inner-wrapper { flex-direction: column; gap: 2rem; text-align: center; }
+    .about-dual-flex, .split-grid-1to1 { 
+        grid-template-columns: 1fr; 
+    }
+    .main-title { 
+        font-size: 2.8rem; 
+    }
+    .footer-inner-wrapper { 
+        flex-direction: column; 
+        gap: 2rem; 
+        text-align: center; 
+    }
+
+    /* Target the Hamburger Switch Icon visibility */
+    .mobile-toggle-trigger {
+        display: flex;
+    }
+
+    /* Convert standard horizontal layout into a responsive dropdown slide menu */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--interface-glass);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-bottom: 1px solid var(--border-glass);
+        padding: 2rem;
+        gap: 1.8rem;
+        text-align: center;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    }
+
+    /* Expand layout when mobile burger event fires */
+    .nav-menu.mobile-expanded {
+        max-height: 350px;
+        opacity: 1;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+    }
+
+    /* Subtle visibility adjustment for small screens so elements don't bunch up */
+    .online-text-label {
+        display: none;
+    }
+    .status-online-indicator {
+        padding: 0.6rem;
+    }
+}
+
+/* INTERACTIVE FOOTER LINK COMPONENT */
+.footer-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: -1px;
+    left: 0;
+    background-color: var(--accent);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }

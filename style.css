@@ -130,6 +130,7 @@ body {
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.5px;
+    flex-shrink: 0;
 }
 
 .brand-logo span {
@@ -310,14 +311,6 @@ body {
    ========================================================================== */
 .layout-section {
     margin-bottom: 6rem;
-}
-
-.section-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
 }
 
 .section-badge {
@@ -762,68 +755,6 @@ body {
     border-color: #1C0D0D transparent transparent transparent;
 }
 
-/* ==========================================================================
-   MOBILE MATRIX INTERFACE RESPONSIVENESS OVERRIDES
-   ========================================================================== */
-@media (max-width: 900px) {
-    .about-dual-flex, .split-grid-1to1 { 
-        grid-template-columns: 1fr; 
-    }
-    .main-title { 
-        font-size: 2.8rem; 
-    }
-    .footer-inner-wrapper { 
-        flex-direction: column; 
-        gap: 2rem; 
-        text-align: center; 
-    }
-
-    /* Target the Hamburger Switch Icon visibility */
-    .mobile-toggle-trigger {
-        display: flex;
-    }
-
-    /* Convert standard horizontal layout into a responsive dropdown slide menu */
-    .nav-menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--interface-glass);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-bottom: 1px solid var(--border-glass);
-        padding: 2rem;
-        gap: 1.8rem;
-        text-align: center;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
-    }
-
-    /* Expand layout when mobile burger event fires */
-    .nav-menu.mobile-expanded {
-        max-height: 350px;
-        opacity: 1;
-    }
-    
-    .nav-link {
-        font-size: 1.1rem;
-        padding: 0.5rem 0;
-    }
-
-    /* Subtle visibility adjustment for small screens so elements don't bunch up */
-    .online-text-label {
-        display: none;
-    }
-    .status-online-indicator {
-        padding: 0.6rem;
-    }
-}
-
 /* INTERACTIVE FOOTER LINK COMPONENT */
 .footer-link {
     color: var(--text-primary);
@@ -854,4 +785,78 @@ body {
 .footer-link:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+
+/* ==========================================================================
+   MOBILE MATRIX INTERFACE RESPONSIVENESS OVERRIDES
+   ========================================================================== */
+@media (max-width: 900px) {
+    .about-dual-flex, .split-grid-1to1 { 
+        grid-template-columns: 1fr; 
+    }
+    .main-title { 
+        font-size: 2.8rem; 
+    }
+    .footer-inner-wrapper { 
+        flex-direction: column; 
+        gap: 2rem; 
+        text-align: center; 
+    }
+
+    /* Target the Hamburger Switch Icon visibility */
+    .mobile-toggle-trigger {
+        display: flex;
+    }
+
+    /* Convert standard horizontal layout into a responsive dropdown slide menu */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--base-bg);
+        border-bottom: 1px solid var(--border-glass);
+        padding: 2rem;
+        gap: 1.8rem;
+        text-align: center;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+        z-index: 1000;
+    }
+
+    /* Expand layout when mobile burger event fires */
+    .nav-menu.mobile-expanded {
+        max-height: 350px;
+        opacity: 1;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        color: var(--text-primary);
+    }
+
+    /* Hide the text flags to save horizontal header space */
+    .online-text-label, #theme-text {
+        display: none;
+    }
+    
+    .status-online-indicator {
+        padding: 0.6rem;
+    }
+
+    .theme-toggle-btn {
+        padding: 0.6rem;
+        width: 42px;
+        height: 42px;
+        justify-content: center;
+    }
+    
+    .toggle-icon-element {
+        margin: 0 !important;
+    }
 }

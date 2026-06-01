@@ -48,7 +48,7 @@
                 </div>
 
                 <button class="theme-toggle-btn" id="theme-switcher" aria-label="Toggle Interface Mode">
-                    <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+                    <i class="fa-solid fa-moon toggle-icon-element"></i> <span id="theme-text">Dark Mode</span>
                 </button>
                 
                 <button class="mobile-toggle-trigger" id="mobile-menu-btn" aria-label="Toggle Mobile Menu Navigation">
@@ -275,12 +275,12 @@
             const systemState = htmlRoot.getAttribute('data-theme');
             if (systemState === 'dark') {
                 htmlRoot.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fa-solid fa-sun';
+                themeIcon.className = 'fa-solid fa-sun toggle-icon-element';
                 themeText.textContent = 'Light Mode';
                 themeButton.blur();
             } else {
                 htmlRoot.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fa-solid fa-moon';
+                themeIcon.className = 'fa-solid fa-moon toggle-icon-element';
                 themeText.textContent = 'Dark Mode';
                 themeButton.blur();
             }

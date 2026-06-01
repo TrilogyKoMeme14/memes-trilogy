@@ -4,42 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRILOGY MEMES | Ultimate Chaos Hub</title>
-    <!-- Premium Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Vector Social & User Interface Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <script>
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isInstagram = (ua.indexOf('Instagram') > -1);
+
+      if (isInstagram) {
+        // Forces Android WebView instances to automatically switch into standard mobile Chrome
+        const currentUrl = window.location.href.replace(/^https?:\/\//, '');
+        window.location.href = "intent://" + currentUrl + "#Intent;scheme=https;package=com.android.chrome;end";
+      }
+    </script>
 </head>
 <body>
 
-    <!-- Dynamic Animated Ambient Background Glow Canvas -->
     <div class="ambient-glow-wrapper">
         <div class="fluid-orb orb-primary"></div>
         <div class="fluid-orb orb-secondary"></div>
     </div>
 
-    <!-- Sticky Glassmorphic Navigation Control Deck -->
+    <div id="browser-banner" style="display:none; background: #8b0000; color: #fff; text-align: center; padding: 12px 20px; font-size: 14px; font-family: 'Inter', sans-serif; position: relative; z-index: 10000; width: 100%; font-weight: 500;">
+      💡 Performance running slow? Tap the <b>three dots (•••)</b> at the top right and select <b>"Open in System Browser / Chrome"</b>!
+    </div>
+
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="brand-logo">TRILOGY<span>MEMES</span></a>
-            <nav class="nav-menu">
+            
+            <nav class="nav-menu" id="mobile-navigation-deck">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#journey" class="nav-link">Journey</a>
                 <a href="#community" class="nav-link">Community</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
             </nav>
+            
             <div class="nav-actions">
+                <div class="status-online-indicator">
+                    <span class="online-pulse-dot"></span>
+                    <span class="online-text-label">Online</span>
+                </div>
+
                 <button class="theme-toggle-btn" id="theme-switcher" aria-label="Toggle Interface Mode">
                     <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+                </button>
+                
+                <button class="mobile-toggle-trigger" id="mobile-menu-btn" aria-label="Toggle Mobile Menu Navigation">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Master Layout Envelope -->
     <main class="master-container">
 
-        <!-- Hero Showcase Section -->
         <section class="hero-showcase">
             <div class="status-pill">
                 <span class="live-pulse"></span> Keep The Chaos Alive 🔥
@@ -48,13 +68,11 @@
             <p class="main-subtitle">The Ultimate Chaos Hub for Trinitians ⚡🤣</p>
         </section>
 
-        <!-- About Segment with Expandable "Know More" System -->
         <section id="about" class="layout-section">
             <div class="section-badge">INDEX</div>
             <h2 class="section-heading">About Us</h2>
             
             <div class="about-dual-flex">
-                <!-- Platform Overview -->
                 <div class="glass-card full-width-card expandable-box">
                     <div class="card-glow-tracker"></div>
                     <div class="card-header-inline">
@@ -68,7 +86,7 @@
                     
                     <div class="extended-rich-content">
                         <p class="highlight-text">
-                            Welcome to the official hub of @memes.trilogy, a platform born a year ago from our original roots as @memes.pagalho. This space is dedicated to delivering highly interesting, frequent, and intensely relatable memes and reels. While this page operates within the cultural ecosystem of Trinity International College, it is entirely independent and not run by any official college representatives. Our core mission is unity through humor creating a digital lounge where all Trinitians can connect, laugh, and chill out together in a shared, humorous way. Content is created purely for entertainment and is never intended to harm anyone's sentiments, but if anything ever misses the mark, we kindly and sincerely apologize. It's all about fun here.
+                            Welcome to the official hub of @memes.trilogy, a platform born a year ago from our original roots as @memes.pagalho. This space is dedicated to delivering highly interesting, frequent, and intensely relatable memes and reels. While this page operates within the cultural ecosystem of Tri___y International College, it is entirely independent and not run by any official college representatives. Our core mission is unity through humor creating a digital lounge where all Trinitians can connect, laugh, and chill out together in a shared, humorous way. Content is created purely for entertainment and is never intended to harm anyone's sentiments, but if anything ever misses the mark, we kindly and sincerely apologize. It's all about fun here.
                         </p>
                     </div>
                     
@@ -77,7 +95,6 @@
                     </button>
                 </div>
 
-                <!-- Admin Overview -->
                 <div class="glass-card full-width-card expandable-box">
                     <div class="card-glow-tracker"></div>
                     <div class="card-header-inline">
@@ -102,7 +119,6 @@
             </div>
         </section>
 
-        <!-- Structural Journey Section -->
         <section id="journey" class="layout-section">
             <div class="section-badge">TIMELINE</div>
             <h2 class="section-heading">Our Journey</h2>
@@ -119,7 +135,7 @@
 
                     <div class="card-content">
                         <h3>@memes.pagalho</h3>
-                        <p>Where the legacy started. I was creating memes with same energy an year back ago.</p>
+                        <p>Where it all began: crafting memes with this exact same energy a year ago.</p>
                     </div>
                     <div class="card-footer-metrics">
                         <span><i class="fa-solid fa-folder-closed"></i> Archived Archive</span>
@@ -138,7 +154,7 @@
 
                     <div class="card-content">
                         <h3>@memes.trilogy_</h3>
-                        <p>The evolved phase with a new phase and more good content relatable to you in a very professional way.</p>
+                        <p>Entering a new phase: Bringing you higher quality, relatable content tailored to hit the mark every time.</p>
                     </div>
                     <div class="card-footer-metrics">
                         <span><i class="fa-solid fa-bolt-lightning"></i> Active Hub</span>
@@ -149,7 +165,6 @@
             </div>
         </section>
 
-        <!-- Community Interaction Hub -->
         <section id="community" class="layout-section">
             <div class="section-badge">PORTAL</div>
             <h2 class="section-heading">Community Interaction Hub</h2>
@@ -167,7 +182,7 @@
                     <div class="card-glow-tracker"></div>
                     <div class="card-icon-accent"><i class="fa-solid fa-lightbulb"></i></div>
                     <h3>Meme Suggestions</h3>
-                    <p>Got a chaotic lecture event or a unique template blueprint? Send your raw idea vectors over.</p>
+                    <p>Got a crazy idea or a unique clip that’s begging to be a meme template? Send your raw concepts over.</p>
                     <div class="interactive-arrow">Launch Form <i class="fa-solid fa-arrow-right-long"></i></div>
                 </a>
 
@@ -182,7 +197,6 @@
             </div>
         </section>
 
-        <!-- Star Rating Module Component -->
         <section class="layout-section scoring-alignment">
             <div class="glass-card system-rating-card">
                 <div class="card-glow-tracker"></div>
@@ -205,7 +219,6 @@
             </div>
         </section>
 
-        <!-- Media Picture Archive Gallery (Modified to avoid hover metrics) -->
         <section id="gallery" class="layout-section">
             <div class="section-badge">MEDIA</div>
             <h2 class="section-heading">The Meme Vault Gallery</h2>
@@ -228,12 +241,11 @@
 
     </main>
 
-    <!-- Social Footer Structure (Updated with passive 'Soon !' wrappers) -->
     <footer class="premium-footer">
         <div class="footer-inner-wrapper">
             <div class="footer-branding">
-                <p class="copyright-text">&copy; 2026 TRILOGY MEMES. Engineered for premium performance.</p>
-                <p class="sub-credit">Made with ❤️ for Trinitians</p>
+                <p class="copyright-text">&copy; 2026 TRILOGY MEMES. Engineered by <a href="https://imgs.search.brave.com/B3Bwwm9poXi57eInjL4plQd7DUOicke72QOsZTSExFY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzVmL2Y0/LzY4LzVmZjQ2OGVm/NjE1MmVkYWEwMGE5/ZTAwZDA2NGNkMDdl/LmpwZw" target="_blank" class="footer-link">@svt.heic</a>.</p>
+                <p class="sub-credit">Made with ❤️ for Everyone else</p>
             </div>
             
             <div class="vector-social-deck">
@@ -252,7 +264,6 @@
         </div>
     </footer>
 
-    <!-- Interactive Engine Script -->
     <script>
         const themeButton = document.getElementById('theme-switcher');
         const themeIcon = themeButton.querySelector('i');
@@ -274,6 +285,36 @@
                 themeButton.blur();
             }
         });
+
+        // Responsive Hamburger Mobile Toggle Navigation Engine
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenuDeck = document.getElementById('mobile-navigation-deck');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenuDeck.classList.toggle('mobile-expanded');
+            if (navMenuDeck.classList.contains('mobile-expanded')) {
+                menuIcon.className = 'fa-solid fa-xmark';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        });
+
+        // Close mobile drop-down automatically upon clicking an anchor path link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenuDeck.classList.remove('mobile-expanded');
+                menuIcon.className = 'fa-solid fa-bars';
+            });
+        });
+
+        // Activation check for iOS/iPhone internal Instagram App View Browser Warning Banner
+        if (navigator.userAgent.includes("Instagram")) {
+            const banner = document.getElementById("browser-banner");
+            if (banner) {
+                banner.style.display = "block";
+            }
+        }
 
         // Dynamic Cursor Glow Logic for standard glass containers
         document.querySelectorAll('.glass-card').forEach(card => {

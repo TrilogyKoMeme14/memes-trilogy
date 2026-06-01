@@ -860,3 +860,26 @@ body {
         margin: 0 !important;
     }
 }
+
+/* Specific Extra Optimization Rule: Scaled specifically for narrow Phone screens (e.g. Under 480px width) */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 1rem 1rem; /* Tightens container padding on tiny screens */
+    }
+    .brand-logo {
+        font-size: 1.15rem; /* Reduces logo font scale slightly to 80% to fit neatly */
+    }
+    .nav-actions {
+        gap: 0.6rem; /* Brings the buttons and burger menu tighter together */
+    }
+    .status-online-indicator {
+        background: transparent; /* Drops box border on extra small phones to eliminate bulk */
+        border: none;
+        padding: 0.2rem;
+    }
+    .theme-toggle-btn, .mobile-toggle-trigger {
+        width: 36px; /* Scales icon toggle circular buttons down to 85% layout width */
+        height: 36px;
+        font-size: 0.95rem;
+    }
+}

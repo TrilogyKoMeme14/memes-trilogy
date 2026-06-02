@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>TRILOGY MEMES | Ultimate Chaos Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,6 @@
       const isInstagram = (ua.indexOf('Instagram') > -1);
 
       if (isInstagram) {
-        // Forces Android WebView instances to automatically switch into standard mobile Chrome
         const currentUrl = window.location.href.replace(/^https?:\/\//, '');
         window.location.href = "intent://" + currentUrl + "#Intent;scheme=https;package=com.android.chrome;end";
       }
@@ -30,7 +29,7 @@
     </div>
 
     <div id="browser-banner" style="display:none; background: #8b0000; color: #fff; text-align: center; padding: 12px 20px; font-size: 14px; font-family: 'Inter', sans-serif; position: relative; z-index: 10000; width: 100%; font-weight: 500;">
-      💡 Performance running slow? Tap the <b>three dots (•••)</b> at the top right and select <b>"Open in System Browser / Chrome"</b>!
+      💡 Performance running slow? Tap the <b>three dots (•••)</b> at the top right and select <b>"Open in System Browser"</b>!
     </div>
 
     <header class="navbar">
@@ -286,7 +285,6 @@
         const themeText = document.getElementById('theme-text');
         const htmlRoot = document.documentElement;
 
-        // Theme Toggle Mechanism
         themeButton.addEventListener('click', () => {
             const systemState = htmlRoot.getAttribute('data-theme');
             if (systemState === 'dark') {
@@ -302,7 +300,6 @@
             }
         });
 
-        // Responsive Hamburger Mobile Toggle Navigation Engine
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenuDeck = document.getElementById('mobile-navigation-deck');
         const menuIcon = mobileMenuBtn.querySelector('i');
@@ -316,7 +313,6 @@
             }
         });
 
-        // Close mobile drop-down automatically upon clicking an anchor path link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navMenuDeck.classList.remove('mobile-expanded');
@@ -324,7 +320,6 @@
             });
         });
 
-        // Activation check for iOS/iPhone internal Instagram App View Browser Warning Banner
         if (navigator.userAgent.includes("Instagram")) {
             const banner = document.getElementById("browser-banner");
             if (banner) {
@@ -332,7 +327,6 @@
             }
         }
 
-        // Dynamic Cursor Glow Logic for standard glass containers
         document.querySelectorAll('.glass-card').forEach(card => {
             const tracker = card.querySelector('.card-glow-tracker');
             if (!tracker) return;
@@ -352,7 +346,6 @@
             });
         });
 
-        // Expandable Panel Logic
         function toggleReadMore(button) {
             const targetBox = button.closest('.expandable-box');
             const innerExpanded = targetBox.querySelector('.extended-rich-content');
@@ -375,7 +368,6 @@
             }
         }
 
-        // Live Scoring System Alignment
         const stars = document.querySelectorAll('#interactive-star-container .interactive-star');
         const liveScore = document.getElementById('averageRating');
         const toast = document.getElementById('thankYou');
@@ -398,7 +390,6 @@
             });
         });
 
-        // DYNAMIC INTERACTIVE LIGHTBOX LOGIC ENGINE
         const lightbox = document.getElementById('gallery-lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.getElementById('close-lightbox');
@@ -407,13 +398,13 @@
             img.addEventListener('click', () => {
                 lightboxImg.src = img.src;
                 lightbox.classList.add('lightbox-visible');
-                document.body.style.overflow = 'hidden'; // Prevents background body scrolling
+                document.body.style.overflow = 'hidden';
             });
         });
 
         closeBtn.addEventListener('click', () => {
             lightbox.classList.remove('lightbox-visible');
-            document.body.style.overflow = ''; // Restores standard scroll interactions
+            document.body.style.overflow = '';
         });
 
         lightbox.addEventListener('click', (e) => {
@@ -423,7 +414,6 @@
             }
         });
 
-        // B. SCROLL Progress LEVEL MONITOR
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -431,7 +421,6 @@
             document.getElementById('scroll-progress-line').style.width = scrolled + '%';
         });
 
-        // A. INSTAGRAM BUTTON INTERACTION COPYSCRIPT
         function copyInstagramHandle() {
             const handleText = "@memes.trilogy_";
             const btn = document.getElementById('copy-handle-btn');

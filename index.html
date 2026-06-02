@@ -22,6 +22,8 @@
 </head>
 <body>
 
+    <div id="scroll-progress-line" style="position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--purple)); width: 0%; z-index: 10000; transition: width 0.1s ease-out;"></div>
+
     <div class="ambient-glow-wrapper">
         <div class="fluid-orb orb-primary"></div>
         <div class="fluid-orb orb-secondary"></div>
@@ -49,7 +51,7 @@
                 </div>
 
                 <button class="theme-toggle-btn" id="theme-switcher" aria-label="Toggle Interface Mode">
-                    <i class="fa-solid fa-moon toggle-icon-element"></i> <span id="theme-text">Dark Mode</span>
+                    <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
                 </button>
                 
                 <button class="mobile-toggle-trigger" id="mobile-menu-btn" aria-label="Toggle Mobile Menu Navigation">
@@ -66,7 +68,15 @@
                 <span class="live-pulse"></span> Keep The Chaos Alive 🔥
             </div>
             <h1 class="main-title">TRILOGY <span class="gradient-text">MEMES</span></h1>
-            <p class="main-subtitle">The Ultimate Chaos Hub for Trilogians ⚡🤣</p>
+            <p class="main-subtitle">The Ultimate Chaos Hub for Trinitians ⚡🤣</p>
+
+            <div class="share-tag-wrapper" style="margin-top: 1.5rem;">
+                <button id="copy-handle-btn" onclick="copyInstagramHandle()" style="background: var(--interface-glass); border: 1px solid var(--border-glass); padding: 0.6rem 1.2rem; border-radius: 100px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.6rem; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);">
+                    <i class="fa-brands fa-instagram" style="color: #F2A21F; font-size: 1.1rem;"></i>
+                    <span id="handle-text">@memes.trilogy_</span>
+                    <i class="fa-solid fa-copy" style="opacity: 0.6; font-size: 0.85rem;"></i>
+                </button>
+            </div>
         </section>
 
         <section id="about" class="layout-section">
@@ -225,15 +235,15 @@
             <h2 class="section-heading">The Meme Vault Gallery</h2>
             <div class="gallery-responsive-matrix">
                 
-                <div class="gallery-static-frame">
+                <div class="gallery-static-frame" tabindex="0">
                     <img src="images/meme1.png" alt="Meme Feature 1" onerror="this.src='https://placehold.co/400x300/16102b/8e8a9f?text=Meme+Node+01';">
                 </div>
 
-                <div class="gallery-static-frame">
+                <div class="gallery-static-frame" tabindex="0">
                     <img src="images/meme2.png" alt="Meme Feature 2" onerror="this.src='https://placehold.co/400x300/16102b/8e8a9f?text=Meme+Node+02';">
                 </div>
 
-                <div class="gallery-static-frame">
+                <div class="gallery-static-frame" tabindex="0">
                     <img src="images/meme3.png" alt="Meme Feature 3" onerror="this.src='https://placehold.co/400x300/16102b/8e8a9f?text=Meme+Node+03';">
                 </div>
 
@@ -265,6 +275,11 @@
         </div>
     </footer>
 
+    <div id="gallery-lightbox" class="lightbox-overlay">
+        <span id="close-lightbox" class="lightbox-close-trigger"><i class="fa-solid fa-xmark"></i></span>
+        <img id="lightbox-img" src="" alt="Enlarged view Visual Target">
+    </div>
+
     <script>
         const themeButton = document.getElementById('theme-switcher');
         const themeIcon = themeButton.querySelector('i');
@@ -276,12 +291,12 @@
             const systemState = htmlRoot.getAttribute('data-theme');
             if (systemState === 'dark') {
                 htmlRoot.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fa-solid fa-sun toggle-icon-element';
+                themeIcon.className = 'fa-solid fa-sun';
                 themeText.textContent = 'Light Mode';
                 themeButton.blur();
             } else {
                 htmlRoot.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fa-solid fa-moon toggle-icon-element';
+                themeIcon.className = 'fa-solid fa-moon';
                 themeText.textContent = 'Dark Mode';
                 themeButton.blur();
             }
@@ -382,6 +397,59 @@
                 toast.classList.add('reveal-toast');
             });
         });
+
+        // DYNAMIC INTERACTIVE LIGHTBOX LOGIC ENGINE
+        const lightbox = document.getElementById('gallery-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        document.querySelectorAll('.gallery-static-frame img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('lightbox-visible');
+                document.body.style.overflow = 'hidden'; // Prevents background body scrolling
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('lightbox-visible');
+            document.body.style.overflow = ''; // Restores standard scroll interactions
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg && e.target !== closeBtn && !closeBtn.contains(e.target)) {
+                lightbox.classList.remove('lightbox-visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // B. SCROLL Progress LEVEL MONITOR
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress-line').style.width = scrolled + '%';
+        });
+
+        // A. INSTAGRAM BUTTON INTERACTION COPYSCRIPT
+        function copyInstagramHandle() {
+            const handleText = "@memes.trilogy_";
+            const btn = document.getElementById('copy-handle-btn');
+            const handleSpan = document.getElementById('handle-text');
+            
+            navigator.clipboard.writeText(handleText).then(() => {
+                const originalContent = handleSpan.innerHTML;
+                handleSpan.innerHTML = "✨ Handle Copied!";
+                btn.style.borderColor = "var(--purple)";
+                
+                setTimeout(() => {
+                    handleSpan.innerHTML = handleText;
+                    btn.style.borderColor = "var(--border-glass)";
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy handle: ', err);
+            });
+        }
     </script>
 </body>
 </html>
